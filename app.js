@@ -1,12 +1,12 @@
-import express from "express"
-import cors from "cors"
-import cookieParser from "cookie-parser"
-import dotenv from "dotenv"
-import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken"
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import connectDB from "./db/index.js";
 
-const app=express()
+const app=express();
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -31,11 +31,11 @@ app.use(cors({
     credentials:true
 }))
 
-app.set('view engine','ejs')
-app.use(express.json())
+app.set('view engine','ejs');
+app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-app.use(cookieParser())
+app.use(cookieParser());
 
 
 
@@ -55,7 +55,7 @@ export{app}
 
 //import {app} from "./app.js"
 
-dotenv.config({path:'./env'})
+dotenv.config({path:'./env'});
 connectDB()
 .then(()=>{
     app.listen(process.env.PORT, () => {
