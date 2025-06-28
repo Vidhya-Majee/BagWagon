@@ -19,7 +19,9 @@ const ownerSchema=mongoose.Schema({
  picture:String
 })
 
- //export const owner=mongoose.model('owner',ownerSchema);
+ 
+ //export const ownerModel = mongoose.model("owner", ownerSchema);
+
 
  const ownerModel = mongoose.model("owner", ownerSchema);
 

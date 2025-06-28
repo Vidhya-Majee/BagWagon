@@ -14,5 +14,11 @@ panelcolor:String,
 textcolor:String
 })
 
-  export const product=mongoose.model('product',productSchema);
+  //export const productModel=mongoose.model('product',productSchema);
+
+   const productModel=mongoose.model("product",productSchema);
+  
+  export default productModel;
+ 
+
   

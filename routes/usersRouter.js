@@ -1,5 +1,8 @@
 
 import {Router} from "express";
+import { registerUser,loginUser } from "../controllers/authcontroller.js";
+
+
 
 const router=Router()
 router.get('/',function (req,res) {
@@ -7,10 +10,8 @@ router.get('/',function (req,res) {
     res.send("hey")    
 })
 
-router.post('/register',function (req,res) {
-    
-    let {email,password,fullname}=req.body
-})
+router.post('/register', registerUser);
+router.post('/login', loginUser);
 
 
 export default router

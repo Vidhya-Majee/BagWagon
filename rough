@@ -1,0 +1,6 @@
+"start": "node app.js",                     // For production mode
+  "start:dev": "cross-env NODE_ENV=development node app.js", // Development mode (cross-platform)
+  "dev": "nodemon -r dotenv/config app.js",   // Development mode with hot reloading
+
+   // "dev": "nodemon -r dotenv/config --experimental-json-modules app.js",
+    //"start:dev": "set NODE_ENV=development && node app.js",

@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import expressSession from "express-session";
+import flash from "connect-flash";
+
 import connectDB from "./db/index.js";
 
 const app=express();
@@ -31,6 +34,14 @@ app.use(cors({
     credentials:true
 }))
 
+app.use(expressSession({
+    resave:false,
+    saveUninitialized:false,
+    secret:process.env.EXPRESS_SESSION_SECRET,
+})
+)
+
+app.use(flash());
 app.set('view engine','ejs');
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -48,12 +59,12 @@ app.use('/users',usersRouter);
 app.use('/products',productsRouter);
 
 
-export{app}
+export{app};
 
 
 
 
-//import {app} from "./app.js"
+//import {app} from "./app.js";
 
 dotenv.config({path:'./env'});
 connectDB()

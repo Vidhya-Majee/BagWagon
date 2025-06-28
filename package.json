@@ -5,9 +5,9 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon -r dotenv/config --experimental-json-modules app.js",
-    "start:dev": "set NODE_ENV=development && node app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "show": "nodemon -r dotenv/config --experimental-json-modules app.js",
+    "start:show": "set NODE_ENV=development && node app.js"
   },
   "keywords": [],
   "author": "Vidhya Majee",
@@ -15,12 +15,14 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "config": "^4.0.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "debug": "^4.4.1",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.0",
     "multer": "^2.0.1",
