@@ -1,6 +1,6 @@
 
 import {Router} from "express";
-import { registerUser,loginUser } from "../controllers/authcontroller.js";
+import { registerUser,loginUser,logout } from "../controllers/authcontroller.js";
 
 
 
@@ -12,6 +12,7 @@ router.get('/',function (req,res) {
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
+router.get('/logout', logout);
 
 
 export default router

@@ -2,21 +2,32 @@ import jwt from "jsonwebtoken";
 import userModel from "../models/user.model.js";
 
 
-export const isloggedin=async function (req,res,next) {
-    if(!req.cookies.token) {
-        req.flash("error","You need to login first");
+
+export const isloggedin=async function(req, res, next){
+    const token = req.cookies.token;
+    if (!token) {
+        req.flash("error", "You need to log in first.");
         return res.redirect("/");
-    
     }
-    try {
-        let decoded=jwt.verify(req.cookies.token,process.env.JWT_KEY);
-        let user=await userModel.findOne(email ,decoded.email).select("-password");
 
-        req.user=user;
+    try{
+        const decoded = jwt.verify(token, process.env.JWT_KEY);
+        const user = await userModel
+            .findOne({email: decoded.email})
+            .select("-password");
+        req.user = user;
         next();
-
-    } catch (error) {
-        req.flash("error","something went wrong");
-    res.redirect("/");
+    }
+    catch(err){
+        req.flash("error", "something went wrong.");
+        res.redirect("/");
     }
 }
+
+//export default isloggedin;
+
+
+
+
+
+ 

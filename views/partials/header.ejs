@@ -10,16 +10,22 @@
 </head>
 
 <body class="font-['helvetica_now_display']">
-    <nav class="w-full flex justify-between px-5 py-3">
-        <h3 class="text-xl">Scatch</h3>
-        <% var loggedin = typeof loggedin != "undefined" ? loggedin : true %>
-        <% if(loggedin){ %>
-            <div class="flex gap-5">
-                <a href="/shop">Shop</a>
-                <a href="/cart">Cart</a>
-                <a href="">My account</a>
-                <a class="text-red-600" href="/users/logout">Logout</a>
-            </div>
+    <nav class="w-full flex justify-between items-center px-5 py-3 bg-white/80 backdrop-blur shadow-md">
+        <h3 class="text-3xl font-black tracking-tight font-['Montserrat','Arial','sans-serif'] text-[#212121] select-none">
+            <span class="text-[#2874f0]">Bag</span><span class="text-yellow-500">Wagon</span>
+        </h3>
+        <h5 class="text-base md:text-lg font-normal text-gray-700 italic font-['Montserrat','Helvetica_Now_Display','sans-serif'] border-l-4 border-blue-400 pl-4 ml-2">
+            "Bags That Speak Your Style. Pack It. Sling It. Own It."
+        </h5>
+        <% var isloggedin=typeof isloggedin !=="undefined"?isloggedin:true  %>
+     <% if(isloggedin){ %>
+<div class="flex gap-5">
+            <a href="/shop">Shop</a>
+            <a href="/cart">Cart</a>
+            <a href="/account">My Account</a>
+            <a class="text-red-600" href="/users/logout">Logout</a>
+        </div>
+
         <% } %>
         
     </nav>

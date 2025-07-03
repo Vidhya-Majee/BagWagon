@@ -1,58 +1,83 @@
 <%- include('./partials/header') %>
     <% if(success.length>0){ %>
-    <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
-        <span class="inline-block mt-1 mb-1 text-white">
+    <div class="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg bg-gradient-to-r from-blue-500 to-indigo-500 animate-bounce">
+        <span class="text-white font-semibold tracking-wide">
             <%= success %>
         </span>
     </div>
     <% } %>
     
-    <div class="w-full h-screen flex items-start px-20 py-20">
-        <div class="w-[25%] flex h-screen flex-col items-start">
-            <div class="flex items-center gap-2">
-                <h3>sort by</h3>
+    <!-- Hero Banner with Slideshow -->
+    <section class="shop-hero-slideshow relative w-full h-64 md:h-80 flex items-center justify-center mb-12 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80" alt="Bags Banner" class="shop-hero-img absolute inset-0 w-full h-full object-cover object-center opacity-80 transition-all duration-700" />
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-pink-700/40 to-yellow-500/30"></div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4">Discover Bags That <span class="text-yellow-300">Define You</span></h1>
+            <p class="text-lg md:text-2xl text-white/90 mb-6 font-medium">Trendy. Durable. Affordable. Just for you.</p>
+            <a href="#shop-grid" class="inline-block px-8 py-3 bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-bold rounded-full shadow-lg hover:scale-105 transition-transform duration-200">Shop Now</a>
+        </div>
+        <!-- Decorative shapes -->
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-pink-400/30 rounded-full blur-2xl"></div>
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-400/30 rounded-full blur-2xl"></div>
+    </section>
+
+    <div class="w-full min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-blue-50 via-pink-50 to-yellow-50 px-2 md:px-10 py-8">
+        <!-- Sidebar -->
+        <aside class="w-full md:w-1/4 bg-white/90 rounded-2xl shadow-xl p-6 mb-8 md:mb-0 md:mr-8 flex flex-col gap-10 border border-blue-100">
+            <div>
+                <h3 class="text-lg font-bold text-blue-700 flex items-center gap-2 mb-4"><i class="ri-filter-3-fill text-xl"></i>Sort By</h3>
                 <form action="/shop">
-                    <select class="border-[1px] px-2 py-1" name="sortby" id="">
+                    <select class="border-2 border-blue-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-blue-400" name="sortby">
                         <option value="popular">Popular</option>
                         <option value="newest">Newest</option>
                     </select>
                 </form>
             </div>
-            <div class="flex flex-col mt-20">
-                <a class="block w-fit mb-2" href="">New Collection</a>
-                <a class="block w-fit mb-2" href="">All Products</a>
-                <a class="block w-fit mb-2" href="">Discounted Products</a>
+            <div>
+                <h3 class="text-lg font-bold text-pink-600 flex items-center gap-2 mb-4"><i class="ri-star-smile-fill text-xl"></i>Collections</h3>
+                <nav class="flex flex-col gap-2">
+                    <a class="hover:bg-pink-100 transition rounded px-3 py-2 font-medium text-pink-700 flex items-center gap-2" href="#"><i class="ri-fire-fill"></i>New Collection</a>
+                    <a class="hover:bg-blue-100 transition rounded px-3 py-2 font-medium text-blue-700 flex items-center gap-2" href="#"><i class="ri-shopping-bag-3-fill"></i>All Products</a>
+                    <a class="hover:bg-yellow-100 transition rounded px-3 py-2 font-medium text-yellow-700 flex items-center gap-2" href="#"><i class="ri-discount-percent-fill"></i>Discounted Products</a>
+                </nav>
             </div>
-            <div class="mt-32">
-                <a class="block w-fit mb-2" href="">Filter by :</a>
-                <a class="block w-fit mb-2" href="">Availability</a>
-                <a class="block w-fit mb-2" href="">Discount</a>
+            <div>
+                <h3 class="text-lg font-bold text-green-600 flex items-center gap-2 mb-4"><i class="ri-equalizer-fill text-xl"></i>Filters</h3>
+                <nav class="flex flex-col gap-2">
+                    <a class="hover:bg-green-100 transition rounded px-3 py-2 font-medium text-green-700 flex items-center gap-2" href="#"><i class="ri-checkbox-multiple-blank-fill"></i>Availability</a>
+                    <a class="hover:bg-orange-100 transition rounded px-3 py-2 font-medium text-orange-700 flex items-center gap-2" href="#"><i class="ri-price-tag-3-fill"></i>Discount</a>
+                </nav>
             </div>
-        </div>
-        <div class="w-[75%] flex flex-col gap-5 h-screen">
-            <div class="flex items-start gap-5">
-                <% products.forEach(function(product){ %>
-                    <div class="w-60">
-                        <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
-                            <img class="h-[12rem]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
-                                alt="">
+        </aside>
+       
+        <!-- Product Grid -->
+        <main class="w-full md:w-3/4">
+            <h2 id="shop-grid" class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 tracking-tight text-center md:text-left">Shop Our <span class="text-blue-500">Trendy Bags</span></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                   <% products.forEach(function(product){ %>
+                <div class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col overflow-hidden group relative">
+                    <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>] relative">
+                        <img class="h-44 object-contain transition-transform duration-300 group-hover:scale-105" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+                        <% if(product.discount && product.discount > 0) { %>
+                            <span class="absolute top-3 left-3 bg-gradient-to-r from-pink-500 to-yellow-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow">-<%= product.discount %>% OFF</span>
+                        <% } %>
                         </div>
-                        <div
-                            class="flex justify-between bg-[<%= product.panelcolor %>] items-center px-4 py-4 text-[<%= product.textcolor %>]">
-                            <div>
-                                <h3>
-                                    <%= product.name %>
-                                </h3>
-                                <h4>₹ <%= product.price %>
-                                </h4>
-                            </div>
-                            <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="/addtocart/<%= product._id %>">
-                                <i class="ri-add-line"></i>
-                            </a>
+                    <div class="flex flex-col gap-2 bg-[<%= product.panelcolor %>] px-5 py-4 text-[<%= product.textcolor %>]">
+                        <h3 class="text-lg font-bold truncate"><%= product.name %></h3>
+                        <div class="flex items-center gap-2">
+                            <h4 class="text-xl font-extrabold">₹ <%= product.price %></h4>
+                            <% if(product.discount && product.discount > 0) { %>
+                            <span class="text-sm line-through text-gray-400">₹ <%= (product.price/(1-product.discount/100)).toFixed(0) %></span>
+                            <% } %>
                         </div>
                     </div>
-                    <% }) %>
+                    <a class="absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-tr from-blue-500 to-pink-500 text-white shadow-lg hover:scale-110 transition-transform duration-200" href="/addtocart/<%= product._id %>">
+                        <i class="ri-add-line text-2xl"></i>
+                    </a>
+                    </div>
+                  <% }) %>
             </div>
-        </div>
+        </main>
     </div>
+    <script src="/javascripts/shop-slideshow.js"></script>
     <%- include('./partials/footer') %>

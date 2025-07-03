@@ -1,6 +1,62 @@
-"start": "node app.js",                     // For production mode
-  "start:dev": "cross-env NODE_ENV=development node app.js", // Development mode (cross-platform)
-  "dev": "nodemon -r dotenv/config app.js",   // Development mode with hot reloading
+/*
 
-   // "dev": "nodemon -r dotenv/config --experimental-json-modules app.js",
-    //"start:dev": "set NODE_ENV=development && node app.js",
+/ ->signup or login   1 ✅ ✅ ✅ ✅
+/shop -> shop         1
+/users/cart->cart     1
+/admin->admin Panel
+/owners/products-> show all products   1
+/owners/admin-> show admin panel to create products
+
+
+
+*/
+
+
+// router.get("/cart", isloggedin, async function(req, res){
+//      let user=await userModel.findOne({email:req.user.email}).populate("cart");
+//     //console.log(user.cart);
+//       const bill = (Number(user.cart.price)+20)-Number(user.cart.discount);
+//      res.render("cart", { user, bill });
+    
+   
+// })
+
+
+
+
+// router.post("/cart/remove/:productid", isloggedin, async function(req, res) {
+//     let user = await userModel.findOne({ email: req.user.email });
+
+//     user.cart = user.cart.filter(id => id.toString() !== req.params.productid);
+//     await user.save();
+
+//     res.redirect("/cart");
+// });
+
+
+// router.post("/cart/remove/:productid", isloggedin, async function(req, res) {
+//     await userModel.findOneAndUpdate(
+//         { email: req.user.email },
+//         { $pull: { cart: req.params.productid } }
+//     );
+//     res.redirect("/cart");
+// });
+
+// router.get("/cart", isloggedin, async function(req, res){
+//     let user = await userModel
+//         .findOne({ email: req.user.email })
+//         .populate("cart");
+//     const bill = user.cart.price+20-user.cart.discount;
+//     res.render("cart", { user, bill });
+// })
+
+// router.get("/addtocart/:productId", isloggedin, async function(req, res){
+//     let user = await userModel.findOne({ email: req.user.email });
+
+//     user.cart = req.params.productId;
+//     await user.save();
+//     req.flash("success", "Added to cart");
+//     res.redirect("/shop");
+// });
+//make  this ejs page look more beautiful more elegent look professional just 
+// like flipcart ,amzon and myntra add vibrant colors ,fonts only shop.ejs pages

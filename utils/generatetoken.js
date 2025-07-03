@@ -1,9 +1,20 @@
 import jwt from "jsonwebtoken";
-const generateToken= (user) => {
 
-    let token=jwt.sign({email: user.email, id:user._id},process.env.JWT_KEY)
+
+// Debug process.env.JWT_KEY
+//console.log("JWT_KEY:", process.env.JWT_KEY);
+
+const generateToken=(user) => {
+
+   return jwt.sign({email: user.email, id:user._id},process.env.JWT_KEY);
+       // Generate JWT token
+        
+
+
 };
-
 // Export the function
 export default generateToken;
+
+
+
 

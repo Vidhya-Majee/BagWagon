@@ -1,0 +1,90 @@
+<%- include('./partials/header') %>
+
+<div class="w-full min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-pink-50 px-2 md:px-0 py-10 flex flex-col items-center">
+  <div class="max-w-5xl w-full flex flex-col md:flex-row gap-8">
+    <!-- Sidebar -->
+    <aside class="w-full md:w-1/5 bg-white rounded-2xl shadow-xl p-0 h-fit flex flex-col overflow-hidden border-2 border-blue-200 animate-fade-in">
+      <div class="bg-blue-700 px-6 py-5 flex items-center gap-3">
+        <i class="ri-user-3-fill text-yellow-300 text-2xl"></i>
+        <h3 class="text-xl font-extrabold text-white tracking-wide">Account</h3>
+      </div>
+      <ul class="flex flex-col gap-2 p-6 text-base font-semibold text-blue-900">
+        <li><a href="/account" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-profile-line text-blue-500"></i> Profile</a></li>
+        <li><a href="/orders" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-truck-line text-yellow-500"></i> Orders</a></li>
+        <li><a href="/wishlist" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-heart-3-line text-red-400"></i> Wishlist</a></li>
+        <li><a href="/cart" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-shopping-cart-2-line text-pink-500"></i> Cart (<%= cartCount %>)</a></li>
+        <li><a href="/logout" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-red-50 text-red-600 transition"><i class="ri-logout-box-r-line"></i> Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="w-full md:w-4/5 flex flex-col gap-8">
+      <!-- Top User Card -->
+      <div class="relative bg-gradient-to-r from-blue-700 to-yellow-400 rounded-2xl shadow-2xl p-8 flex items-center gap-6 animate-fade-in overflow-hidden">
+        <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg border-4 border-yellow-300">
+          <i class="ri-user-3-fill text-blue-700 text-5xl"></i>
+    </div>
+        <div class="flex-1">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-1">Hello, <span class="text-yellow-200"><%= user.fullname || 'My Dear User' %></span>!</h2>
+          <p class="text-lg text-blue-100 flex items-center gap-2"><i class="ri-mail-line"></i> <%= user.email %></p>
+            </div>
+        <a href="/logout" class="absolute top-4 right-4 px-4 py-2 rounded-full bg-white text-blue-700 font-bold shadow hover:bg-blue-50 transition flex items-center gap-2 text-base"><i class="ri-logout-box-r-line"></i> Logout</a>
+            </div>
+
+      <!-- Quick Actions Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-2 animate-fade-in">
+        <a href="/orders" class="group bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center gap-3 border-2 border-blue-100 hover:scale-105 hover:shadow-yellow-300/40 transition-all duration-200 cursor-pointer">
+          <div class="bg-blue-100 rounded-full p-4 mb-2 group-hover:bg-yellow-100 transition"><i class="ri-truck-line text-3xl text-blue-700"></i></div>
+          <span class="font-bold text-blue-700 text-lg">My Orders</span>
+        </a>
+        <a href="/wishlist" class="group bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center gap-3 border-2 border-pink-100 hover:scale-105 hover:shadow-pink-200/40 transition-all duration-200 cursor-pointer">
+          <div class="bg-pink-100 rounded-full p-4 mb-2 group-hover:bg-yellow-100 transition"><i class="ri-heart-3-line text-3xl text-pink-500"></i></div>
+          <span class="font-bold text-pink-600 text-lg">Wishlist</span>
+        </a>
+        <a href="/cart" class="group bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center gap-3 border-2 border-yellow-100 hover:scale-105 hover:shadow-yellow-200/40 transition-all duration-200 cursor-pointer">
+          <div class="bg-yellow-100 rounded-full p-4 mb-2 group-hover:bg-blue-100 transition"><i class="ri-shopping-cart-2-line text-3xl text-yellow-500"></i></div>
+          <span class="font-bold text-yellow-600 text-lg">Cart (<%= cartCount %>)</span>
+        </a>
+        <a href="/addresses" class="group bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center gap-3 border-2 border-blue-100 hover:scale-105 hover:shadow-blue-200/40 transition-all duration-200 cursor-pointer">
+          <div class="bg-blue-100 rounded-full p-4 mb-2 group-hover:bg-yellow-100 transition"><i class="ri-map-pin-2-line text-3xl text-blue-700"></i></div>
+          <span class="font-bold text-blue-700 text-lg">Addresses</span>
+        </a>
+            </div>
+
+      <!-- Profile Details Card -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-blue-100 animate-fade-in flex flex-col gap-6 mt-2">
+        <h3 class="text-xl font-extrabold text-blue-700 mb-4 flex items-center gap-2"><i class="ri-profile-line text-yellow-400"></i> Profile Details</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-base">
+          <div class="flex flex-col gap-1">
+            <span class="font-semibold text-blue-700 flex items-center gap-2"><i class="ri-user-3-line"></i> Name</span>
+            <span class="text-lg font-bold text-gray-800"><%= user.fullname || 'My Dear User' %></span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-semibold text-blue-700 flex items-center gap-2"><i class="ri-mail-line"></i> Email</span>
+            <span class="text-lg font-bold text-gray-800"><%= user.email %></span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-semibold text-blue-700 flex items-center gap-2"><i class="ri-shopping-bag-3-line"></i> Cart Items</span>
+            <span class="text-lg font-bold text-gray-800"><%= cartCount %> item(s)</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-semibold text-blue-700 flex items-center gap-2"><i class="ri-calendar-line"></i> Member Since</span>
+            <span class="text-lg font-bold text-gray-800"><%= user.createdAt ? user.createdAt.toDateString() : 'N/A' %></span>
+            </div>
+        </div>
+        </div>
+    </main>
+    </div>
+</div>
+
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease;
+}
+</style>
+
+<%- include('./partials/footer') %>

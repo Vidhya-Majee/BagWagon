@@ -2,7 +2,7 @@ import mongoose ,{Schema} from "mongoose";
 
 
 const productSchema=mongoose.Schema({
-image:String,
+image:Buffer,
 name:String,
 price:Number,
 discount:{
