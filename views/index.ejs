@@ -1,5 +1,15 @@
 <%- include('./partials/header') %>
 
+<!-- Splash Screen (Glimpse) -->
+<div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white">
+  <h1 class="text-5xl font-black tracking-tight font-['Montserrat','Arial','sans-serif'] text-[#212121] select-none">
+    <span class="text-[#2874f0]">Bag</span><span class="text-yellow-500">Wagon</span>🎒🛍️
+  </h1>
+  <p class="text-lg font-normal text-gray-700 italic font-['Montserrat','Helvetica_Now_Display','sans-serif'] mt-2 text-center">
+    "Bags That Speak Your Style. Pack It. Sling It. Own It."
+  </p>
+</div>
+
 <% if(error.length>0){ %>
   <div class="fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-red-500 to-pink-400 shadow-2xl animate-fade-in">
     <i class="ri-close-circle-fill text-2xl text-white animate-bounce"></i>
@@ -13,50 +23,68 @@
   </div>
 <% } %>
 
-<div class="relative min-h-screen w-full flex flex-col items-center justify-center py-12 px-2 md:px-0 overflow-hidden">
-  <!-- Background image with overlay -->
-  <div class="absolute inset-0 z-0">
-    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1500&q=80" alt="People Carrying Bags and Luggage" class="w-full h-full object-cover object-center" />
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-yellow-200/40 to-pink-200/60"></div>
-  </div>
-  <div class="relative z-10 max-w-4xl w-full flex flex-col md:flex-row gap-10 items-center justify-center animate-fade-in">
-    <!-- Register Card -->
-    <div class="w-full md:w-1/2 bg-white/80 rounded-2xl shadow-2xl p-10 flex flex-col gap-6 border-2 border-blue-100 backdrop-blur-xl">
-      <div class="flex flex-col items-center mb-2">
-        <img src="https://cdn-icons-png.flaticon.com/512/891/891462.png" alt="Modern Shopping Bag Icon" class="w-16 h-16 mb-2 drop-shadow-lg" />
-        <h3 class="text-3xl font-extrabold text-blue-700 flex items-center gap-2"><i class="ri-shopping-bag-3-line text-yellow-400"></i> Welcome to <span class="text-yellow-500">BagWagon</span></h3>
-      </div>
-      <h4 class="text-xl font-semibold text-blue-600 mb-4 flex items-center gap-2"><i class="ri-shopping-bag-2-line"></i> Create your account</h4>
-      <form autocomplete="off" action="/users/register" method="post" class="flex flex-col gap-4">
-        <input class="bg-blue-50 border-2 border-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition rounded-lg px-4 py-3 font-semibold text-lg" type="text" placeholder="Full Name" name="fullname" required>
-        <input class="bg-blue-50 border-2 border-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition rounded-lg px-4 py-3 font-semibold text-lg" type="email" placeholder="Email" name="email" required>
-        <input class="bg-blue-50 border-2 border-blue-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition rounded-lg px-4 py-3 font-semibold text-lg" type="password" placeholder="Password" name="password" required>
-        <button type="submit" class="mt-2 px-8 py-3 rounded-full bg-gradient-to-r from-blue-700 to-yellow-400 text-white font-bold shadow-xl hover:shadow-yellow-400/60 hover:scale-105 transition-all duration-200 flex items-center gap-3 text-lg ripple"><i class="ri-shopping-bag-3-line text-2xl"></i> Create My Account</button>
-      </form>
+<!-- Main Content (Hidden Initially) -->
+<div id="main-content" class="hidden">
+  <div class="relative min-h-screen w-full flex flex-col items-center justify-center py-12 px-2 md:px-0 overflow-hidden">
+    <!-- Background image with overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1500&q=80" alt="People Carrying Bags and Luggage" class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-yellow-200/40 to-pink-200/60"></div>
     </div>
-    <!-- Login Card -->
-    <div class="w-full md:w-1/2 bg-white/80 rounded-2xl shadow-2xl p-10 flex flex-col gap-6 border-2 border-yellow-100 backdrop-blur-xl">
-      <div class="flex flex-col items-center mb-2">
-        <img src="https://cdn-icons-png.flaticon.com/512/891/891419.png" alt="Modern Luggage Icon" class="w-16 h-16 mb-2 drop-shadow-lg" />
-        <h4 class="text-xl font-semibold text-yellow-600 flex items-center gap-2"><i class="ri-shopping-bag-2-line"></i> Login to your account</h4>
+
+    <div class="relative z-10 max-w-4xl w-full flex flex-col md:flex-row gap-10 items-center justify-center animate-fade-in">
+      <!-- Register Card -->
+      <div class="w-full md:w-1/2 bg-white/90 rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-gray-200 backdrop-blur-xl">
+        <div class="flex flex-col items-center mb-2">
+          <img src="https://cdn-icons-png.flaticon.com/512/891/891462.png" alt="Bag Icon" class="w-16 h-16 mb-2 drop-shadow-lg" />
+          <h3 class="text-3xl font-extrabold text-gray-800 flex items-center gap-2"><i class="ri-shopping-bag-3-line text-blue-500"></i> Welcome to <span class="text-blue-600">BagWagon</span></h3>
+        </div>
+        <h4 class="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2"><i class="ri-user-add-line text-blue-400"></i> Create your account</h4>
+        <form autocomplete="off" action="/users/register" method="post" class="flex flex-col gap-4">
+          <input class="bg-gray-100 border border-gray-300 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 transition rounded-lg px-4 py-2 text-base" type="text" placeholder="Full Name" name="fullname" required>
+          <input class="bg-gray-100 border border-gray-300 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 transition rounded-lg px-4 py-2 text-base" type="email" placeholder="Email" name="email" required>
+          <input class="bg-gray-100 border border-gray-300 focus:border-blue-400 focus:ring-1 focus:ring-blue-300 transition rounded-lg px-4 py-2 text-base" type="password" placeholder="Password" name="password" required>
+          <button type="submit" class="mt-2 px-6 py-2 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition text-base">Create My Account</button>
+        </form>
       </div>
-      <form autocomplete="off" action="/users/login" method="post" class="flex flex-col gap-4">
-        <input class="bg-yellow-50 border-2 border-yellow-100 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition rounded-lg px-4 py-3 font-semibold text-lg" type="email" placeholder="Email" name="email" required>
-        <input class="bg-yellow-50 border-2 border-yellow-100 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 transition rounded-lg px-4 py-3 font-semibold text-lg" type="password" placeholder="Password" name="password" required>
-        <button type="submit" class="mt-2 px-8 py-3 rounded-full bg-gradient-to-r from-yellow-400 to-pink-400 text-white font-bold shadow-xl hover:shadow-pink-400/60 hover:scale-105 transition-all duration-200 flex items-center gap-3 text-lg ripple"><i class="ri-shopping-bag-2-line text-2xl"></i> Login</button>
-      </form>
+
+      <!-- Login Card -->
+      <div class="w-full md:w-1/2 bg-white/90 rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-gray-200 backdrop-blur-xl">
+        <div class="flex flex-col items-center mb-2">
+          <img src="https://cdn-icons-png.flaticon.com/512/891/891419.png" alt="Luggage Icon" class="w-16 h-16 mb-2 drop-shadow-lg" />
+          <h4 class="text-lg font-semibold text-gray-700 flex items-center gap-2"><i class="ri-login-box-line text-yellow-500"></i> Login to your account</h4>
+        </div>
+        <form autocomplete="off" action="/users/login" method="post" class="flex flex-col gap-4">
+          <input class="bg-gray-100 border border-gray-300 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-300 transition rounded-lg px-4 py-2 text-base" type="email" placeholder="Email" name="email" required>
+          <input class="bg-gray-100 border border-gray-300 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-300 transition rounded-lg px-4 py-2 text-base" type="password" placeholder="Password" name="password" required>
+          <button type="submit" class="mt-2 px-6 py-2 rounded-full bg-yellow-500 text-white font-medium hover:bg-yellow-600 transition text-base">Login</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- Animation Styles -->
 <style>
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-in {
-  animation: fade-in 0.5s ease;
+  animation: fade-in 0.6s ease;
 }
 </style>
+
+<!-- Splash Screen Script -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.getElementById('splash-screen').style.display = 'none';
+      const main = document.getElementById('main-content');
+      main.classList.remove('hidden');
+      main.classList.add('animate-fade-in');
+    }, 2000); // Show splash for 2 seconds
+  });
+</script>
 
 <%- include('./partials/footer') %>

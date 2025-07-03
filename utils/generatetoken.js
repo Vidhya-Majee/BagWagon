@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 
 // Debug process.env.JWT_KEY
-//console.log("JWT_KEY:", process.env.JWT_KEY);
+
 
 const generateToken=(user) => {
 

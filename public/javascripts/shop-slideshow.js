@@ -1,9 +1,9 @@
-// Slideshow images (trendy, modern, bag-focused)
+// Slideshow images (user-provided, bag/lifestyle focused)
 const slideshowImages = [
-  'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80', // Trendy handbags on display
-  'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80', // Fashionable woman with bag
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80', // Modern backpacks in urban setting
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80', // Colorful bags in boutique
+  'https://plus.unsplash.com/premium_photo-1723649902752-6838dff3835e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJhZ3MlMjBzY2hvb2x8ZW58MHx8MHx8fDA%3D',
+  'https://images.unsplash.com/photo-1631387965708-f9c275d9a3d4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJhZ3MlMjBzY2hvb2x8ZW58MHx8MHx8fDA%3D',
+  'https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D',
+  'https://images.unsplash.com/photo-1630830607408-261889eb4968?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmFncyUyMHNjaG9vbHxlbnwwfHwwfHx8MA%3D%3D'
 ];
 
 let currentSlide = 0;
