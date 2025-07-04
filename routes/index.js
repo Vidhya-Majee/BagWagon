@@ -86,6 +86,25 @@ router.get('/account', isloggedin, async (req, res) => {
 });
 
 
+router.post('/cart/checkout', async (req, res) => {
+    const user = req.session.user;
+  
+    if (!user || !user.cart || user.cart.length === 0) {
+      return res.redirect('/cart');
+    }
+  
+    // Save order to DB if needed here...
+  
+    // Clear the cart
+    user.cart = [];
+    await user.save();
+  
+    res.render('order-confirmation', { user });
+  });
+  
+  
+    
+
 
 router.get("/logout", isloggedin, logout);
 
