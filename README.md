@@ -1,4 +1,7 @@
-👜 BagWagon
+👜 BagWagon   😎
+
+
+
 BagWagon is a sleek and modern e-commerce web application designed for bag enthusiasts. Built using the MERN stack with a twist—EJS for templating and Tailwind CSS for styling—it offers a seamless shopping experience with a clean, responsive UI and secure backend.
 
 🚀 Tech Stack
