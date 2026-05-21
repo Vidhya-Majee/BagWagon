@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import expressSession from "express-session";
 import flash from "connect-flash";
+import connectMongo from 'connect-mongo';
 dotenv.config();
 
 import connectDB from "./db/index.js";
@@ -30,12 +31,22 @@ app.use(cors({
     origin:process.env.CORS_ORIGIN,
     credentials:true
 }))
+// app.use(expressSession({
+//     resave:false,
+//     saveUninitialized:false,
+//     secret:process.env.EXPRESS_SESSION_SECRET,
+// })
+// )
+
 app.use(expressSession({
-    resave:false,
-    saveUninitialized:false,
-    secret:process.env.EXPRESS_SESSION_SECRET,
-})
-)
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.EXPRESS_SESSION_SECRET,
+    store: connectMongo.create({
+        mongoUrl: process.env.MONGODB_URI
+    })
+}))
+
 app.use(flash());
 app.set('view engine','ejs');
 app.use(express.json());
