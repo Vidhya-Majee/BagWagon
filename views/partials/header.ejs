@@ -4,28 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BagWagon</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="font-['helvetica_now_display']">
-    <nav class="w-full flex justify-between items-center px-5 py-3 bg-white/80 backdrop-blur shadow-md">
-        <h3 class="text-3xl font-black tracking-tight font-['Montserrat','Arial','sans-serif'] text-[#212121] select-none">
-            <span class="text-[#2874f0]">Bag</span><span class="text-yellow-500">Wagon</span>
-        </h3>
-        <h5 class="text-base md:text-lg font-normal text-gray-700 italic font-['Montserrat','Helvetica_Now_Display','sans-serif'] border-l-4 border-blue-400 pl-4 ml-2">
-            "Bags That Speak Your Style. Pack It. Sling It. Own It."
-        </h5>
-        <% var isloggedin=typeof isloggedin !=="undefined"?isloggedin:true  %>
-     <% if(isloggedin){ %>
-<div class="flex gap-5">
-            <a href="/shop">Shop</a>
-            <a href="/cart">Cart</a>
-            <a href="/account">My Account</a>
-            <a class="text-red-600" href="/users/logout">Logout</a>
-        </div>
+<body class="min-h-screen bg-white text-slate-900">
+    <% const _isloggedin = (typeof isloggedin !== "undefined") ? isloggedin : false; %>
+    <% const _navVariant = (typeof navVariant !== "undefined") ? navVariant : "default"; %>
 
-        <% } %>
-        
+    <nav class="sticky top-0 z-50 w-full border-b border-slate-200/70 bg-white/75 backdrop-blur">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+            <a href="/" class="flex items-center gap-2 select-none">
+                <% if (_navVariant !== "landing") { %>
+                    <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-sm">
+                        <i class="ri-shopping-bag-3-line text-lg"></i>
+                    </span>
+                <% } %>
+                <span class="text-2xl font-black tracking-tight">
+                    <span class="text-[#2874f0]">Bag</span><span class="text-yellow-500">Wagon</span>
+                </span>
+            </a>
+
+            <div class="hidden items-center gap-3 md:flex">
+                <span class="text-sm font-medium text-slate-600">
+                    "Bags That Speak Your Style. Pack It. Sling It. Own It."
+                </span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <% if (_isloggedin) { %>
+                    <a href="/shop" class="rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Shop</a>
+                    <a href="/cart" class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                        <i class="ri-shopping-cart-2-line"></i>
+                        <span class="hidden sm:inline">Cart</span>
+                    </a>
+                    <a href="/account" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+                        <i class="ri-user-3-line"></i>
+                        <span class="hidden sm:inline">Account</span>
+                    </a>
+                    <a href="/users/logout" class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50">
+                        <i class="ri-logout-box-r-line"></i>
+                        <span class="hidden sm:inline">Logout</span>
+                    </a>
+                <% } else { %>
+                    <% if (_navVariant === "landing") { %>
+                        <!-- Landing page: keep navbar clean (auth is on page) -->
+                    <% } else { %>
+                        <a href="/?mode=login" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+                            <i class="ri-login-box-line"></i>
+                            Login
+                        </a>
+                        <a href="/" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                            <i class="ri-user-add-line"></i>
+                            Register
+                        </a>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
     </nav>

@@ -6,6 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "nodemon -r dotenv/config --experimental-json-modules app.js",
     "show": "nodemon -r dotenv/config --experimental-json-modules app.js",
     "start:show": "set NODE_ENV=development && node app.js"
   },

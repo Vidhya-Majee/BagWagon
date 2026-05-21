@@ -3,7 +3,7 @@
 <!-- Splash Screen (Glimpse) -->
 <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white">
   <h1 class="text-5xl font-black tracking-tight font-['Montserrat','Arial','sans-serif'] text-[#212121] select-none">
-    <span class="text-[#2874f0]">Bag</span><span class="text-yellow-500">Wagon</span>🎒🛍️
+    <span class="text-[#2874f0]">Bag</span><span class="text-yellow-500">Wagon</span>
   </h1>
   <p class="text-lg font-normal text-gray-700 italic font-['Montserrat','Helvetica_Now_Display','sans-serif'] mt-2 text-center">
     "Bags That Speak Your Style. Pack It. Sling It. Own It."
@@ -34,7 +34,7 @@
 
     <div class="relative z-10 max-w-4xl w-full flex flex-col md:flex-row gap-10 items-center justify-center animate-fade-in">
       <!-- Register Card -->
-      <div class="w-full md:w-1/2 bg-white/90 rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-gray-200 backdrop-blur-xl">
+      <div id="register-card" class="w-full md:w-1/2 bg-white/90 rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-gray-200 backdrop-blur-xl">
         <div class="flex flex-col items-center mb-2">
           <img src="https://cdn-icons-png.flaticon.com/512/891/891462.png" alt="Bag Icon" class="w-16 h-16 mb-2 drop-shadow-lg" />
           <h3 class="text-3xl font-extrabold text-gray-800 flex items-center gap-2"><i class="ri-shopping-bag-3-line text-blue-500"></i> Welcome to <span class="text-blue-600">BagWagon</span></h3>
@@ -49,13 +49,13 @@
       </div>
 
       <!-- Login Card -->
-      <div class="w-full md:w-1/2 bg-white/90 rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-gray-200 backdrop-blur-xl">
+      <div id="login-card" class="w-full md:w-1/2 bg-white/90 rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-gray-200 backdrop-blur-xl">
         <div class="flex flex-col items-center mb-2">
           <img src="https://cdn-icons-png.flaticon.com/512/891/891419.png" alt="Luggage Icon" class="w-16 h-16 mb-2 drop-shadow-lg" />
           <h4 class="text-lg font-semibold text-gray-700 flex items-center gap-2"><i class="ri-login-box-line text-yellow-500"></i> Login to your account</h4>
         </div>
-        <form autocomplete="off" action="/users/login" method="post" class="flex flex-col gap-4">
-          <input class="bg-gray-100 border border-gray-300 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-300 transition rounded-lg px-4 py-2 text-base" type="email" placeholder="Email" name="email" required>
+        <form id="login-form" autocomplete="off" action="/users/login" method="post" class="flex flex-col gap-4">
+          <input id="login-email" class="bg-gray-100 border border-gray-300 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-300 transition rounded-lg px-4 py-2 text-base" type="email" placeholder="Email" name="email" required>
           <input class="bg-gray-100 border border-gray-300 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-300 transition rounded-lg px-4 py-2 text-base" type="password" placeholder="Password" name="password" required>
           <button type="submit" class="mt-2 px-6 py-2 rounded-full bg-yellow-500 text-white font-medium hover:bg-yellow-600 transition text-base">Login</button>
         </form>
@@ -83,6 +83,16 @@
       const main = document.getElementById('main-content');
       main.classList.remove('hidden');
       main.classList.add('animate-fade-in');
+
+      const mode = "<%= (typeof mode !== 'undefined' ? mode : '') %>";
+      if (mode === "login") {
+        const loginCard = document.getElementById("login-card");
+        loginCard?.classList.add("ring-4", "ring-yellow-300", "shadow-yellow-200/50");
+        loginCard?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => {
+          document.getElementById("login-email")?.focus();
+        }, 250);
+      }
     }, 2000); // Show splash for 2 seconds
   });
 </script>

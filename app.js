@@ -2,8 +2,6 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import expressSession from "express-session";
 import flash from "connect-flash";
 dotenv.config();
@@ -25,8 +23,6 @@ import index  from "./routes/index.js";
 import ownersRouter from "./routes/ownersRouter.js";
 import usersRouter from "./routes/usersRouter.js";
 import productsRouter from "./routes/productsRouter.js";
-
-dotenv.config({path:'./env'});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({

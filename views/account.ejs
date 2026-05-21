@@ -13,7 +13,7 @@
         <li><a href="/orders" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-truck-line text-yellow-500"></i> Orders</a></li>
         <li><a href="/wishlist" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-heart-3-line text-red-400"></i> Wishlist</a></li>
         <li><a href="/cart" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-shopping-cart-2-line text-pink-500"></i> Cart (<%= cartCount %>)</a></li>
-        <li><a href="/logout" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-red-50 text-red-600 transition"><i class="ri-logout-box-r-line"></i> Logout</a></li>
+        <li><a href="/users/logout" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-red-50 text-red-600 transition"><i class="ri-logout-box-r-line"></i> Logout</a></li>
         </ul>
     </aside>
 
@@ -28,7 +28,7 @@
           <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-1">Hello, <span class="text-yellow-200"><%= user.fullname || 'My Dear User' %></span>!</h2>
           <p class="text-lg text-blue-100 flex items-center gap-2"><i class="ri-mail-line"></i> <%= user.email %></p>
             </div>
-        <a href="/logout" class="absolute top-4 right-4 px-4 py-2 rounded-full bg-white text-blue-700 font-bold shadow hover:bg-blue-50 transition flex items-center gap-2 text-base"><i class="ri-logout-box-r-line"></i> Logout</a>
+        <a href="/users/logout" class="absolute top-4 right-4 px-4 py-2 rounded-full bg-white text-blue-700 font-bold shadow hover:bg-blue-50 transition flex items-center gap-2 text-base"><i class="ri-logout-box-r-line"></i> Logout</a>
             </div>
 
       <!-- Quick Actions Grid -->
