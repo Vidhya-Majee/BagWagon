@@ -1,12 +1,16 @@
 <%- include('./partials/header') %>
 
 <div class="w-full min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-pink-50 px-2 md:px-0 py-10 flex flex-col items-center">
-  <div class="max-w-5xl w-full flex flex-col md:flex-row gap-8">
+  <div class="max-w-5xl w-full flex flex-col md:flex-row gap-8 relative">
+    <div id="accountSidebarOverlay" class="hidden fixed inset-0 z-40 bg-black/30 md:hidden"></div>
     <!-- Sidebar -->
-    <aside class="w-full md:w-1/5 bg-white rounded-2xl shadow-xl p-0 h-fit flex flex-col overflow-hidden border-2 border-blue-200 animate-fade-in">
-      <div class="bg-blue-700 px-6 py-5 flex items-center gap-3">
+    <aside id="accountSidebar" class="fixed inset-y-0 left-0 z-50 w-11/12 max-w-xs transform -translate-x-full bg-white rounded-2xl shadow-xl p-0 h-full flex flex-col overflow-hidden border-2 border-blue-200 animate-fade-in transition-transform duration-300 md:relative md:translate-x-0 md:inset-auto md:w-full md:max-w-none md:h-fit md:block">
+      <div class="relative bg-blue-700 px-6 py-5 flex items-center gap-3">
         <i class="ri-user-3-fill text-yellow-300 text-2xl"></i>
         <h3 class="text-xl font-extrabold text-white tracking-wide">Account</h3>
+        <button id="closeAccountSidebar" type="button" class="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 md:hidden">
+          <i class="ri-close-line text-xl"></i>
+        </button>
       </div>
       <ul class="flex flex-col gap-2 p-6 text-base font-semibold text-blue-900">
         <li><a href="/account" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="ri-profile-line text-blue-500"></i> Profile</a></li>
@@ -19,6 +23,13 @@
 
     <!-- Main Content -->
     <main class="w-full md:w-4/5 flex flex-col gap-8">
+      <div class="flex items-center justify-between gap-4 md:hidden">
+        <h2 class="text-xl font-bold text-slate-900">Account Menu</h2>
+        <button id="openAccountSidebar" type="button" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-100">
+          <i class="ri-menu-3-line text-lg"></i>
+          Open
+        </button>
+      </div>
       <!-- Top User Card -->
       <div class="relative bg-gradient-to-r from-blue-700 to-yellow-400 rounded-2xl shadow-2xl p-8 flex items-center gap-6 animate-fade-in overflow-hidden">
         <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg border-4 border-yellow-300">
@@ -86,5 +97,28 @@
   animation: fade-in 0.5s ease;
 }
 </style>
+
+<script>
+  (function() {
+    var openSidebarBtn = document.getElementById('openAccountSidebar');
+    var closeSidebarBtn = document.getElementById('closeAccountSidebar');
+    var sidebar = document.getElementById('accountSidebar');
+    var overlay = document.getElementById('accountSidebarOverlay');
+    if (!openSidebarBtn || !closeSidebarBtn || !sidebar || !overlay) return;
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+    }
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    }
+
+    openSidebarBtn.addEventListener('click', openSidebar);
+    closeSidebarBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+  })();
+</script>
 
 <%- include('./partials/footer') %>

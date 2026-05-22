@@ -23,7 +23,7 @@
 
     <div class="w-full min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-blue-50 via-pink-50 to-yellow-50 px-2 md:px-10 py-8">
         <!-- Sidebar -->
-        <aside class="w-full md:w-1/4 bg-white/90 rounded-2xl shadow-xl p-6 mb-8 md:mb-0 md:mr-8 flex flex-col gap-10 border border-blue-100">
+        <aside class="hidden md:block w-full md:w-1/4 bg-white/90 rounded-2xl shadow-xl p-6 mb-8 md:mb-0 md:mr-8 flex flex-col gap-10 border border-blue-100">
             <div>
                 <h3 class="text-lg font-bold text-blue-700 flex items-center gap-2 mb-4"><i class="ri-filter-3-fill text-xl"></i>Sort By</h3>
                 <form action="/shop" class="space-y-3">
@@ -51,9 +51,61 @@
                 </nav>
             </div>
         </aside>
-       
-        <!-- Product Grid -->
+
         <main class="w-full md:w-3/4">
+            <div class="flex items-center justify-between mb-6 md:hidden">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-gray-800">Shop</h2>
+                    <p class="text-sm text-slate-600">Tap filters to refine your mobile shopping view.</p>
+                </div>
+                <button id="filterToggleBtn" type="button" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-100">
+                    <i class="ri-equalizer-fill text-lg"></i>
+                    Filters
+                </button>
+            </div>
+
+            <div id="mobileFilterPanel" class="fixed inset-0 z-50 hidden bg-black/40 p-4 md:hidden">
+                <div class="h-full w-full rounded-3xl bg-white p-6 shadow-2xl overflow-y-auto">
+                    <div class="mb-6 flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Filters</h3>
+                            <p class="text-sm text-slate-600">Choose collections and sorting.</p>
+                        </div>
+                        <button id="closeFilterBtn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200">
+                            <i class="ri-close-line text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-blue-700 mb-3">Sort By</h4>
+                            <form action="/shop" class="space-y-3">
+                                <input type="hidden" name="collection" value="<%= collection || 'all' %>">
+                                <input type="hidden" name="filter" value="<%= filter || '' %>">
+                                <select class="border-2 border-blue-200 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-blue-400" name="sortby" onchange="this.form.submit()">
+                                    <option value="popular" <%= (sortby === 'popular' || !sortby) ? 'selected' : '' %>>Popular</option>
+                                    <option value="newest" <%= sortby === 'newest' ? 'selected' : '' %>>Newest</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-pink-600 mb-3">Collections</h4>
+                            <nav class="flex flex-col gap-2">
+                                <a class="transition rounded px-3 py-3 font-medium flex items-center gap-2 <%= collection === 'new' ? 'bg-pink-100 text-pink-900' : 'hover:bg-pink-100 text-pink-700' %>" href="/shop?collection=new&sortby=newest&filter=<%= filter || '' %>"><i class="ri-fire-fill"></i>New Collection</a>
+                                <a class="transition rounded px-3 py-3 font-medium flex items-center gap-2 <%= collection === 'all' ? 'bg-blue-100 text-blue-900' : 'hover:bg-blue-100 text-blue-700' %>" href="/shop?collection=all&sortby=<%= sortby || 'popular' %>&filter=<%= filter || '' %>"><i class="ri-shopping-bag-3-fill"></i>All Products</a>
+                                <a class="transition rounded px-3 py-3 font-medium flex items-center gap-2 <%= collection === 'discounted' ? 'bg-yellow-100 text-yellow-900' : 'hover:bg-yellow-100 text-yellow-700' %>" href="/shop?collection=discounted&sortby=<%= sortby || 'popular' %>&filter=<%= filter || '' %>"><i class="ri-discount-percent-fill"></i>Discounted Products</a>
+                            </nav>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-green-600 mb-3">Filters</h4>
+                            <nav class="flex flex-col gap-2">
+                                <a class="transition rounded px-3 py-3 font-medium flex items-center gap-2 <%= filter === 'availability' ? 'bg-green-100 text-green-900' : 'hover:bg-green-100 text-green-700' %>" href="/shop?filter=availability&sortby=<%= sortby || 'popular' %>&collection=<%= collection || 'all' %>"><i class="ri-checkbox-multiple-blank-fill"></i>Availability</a>
+                                <a class="transition rounded px-3 py-3 font-medium flex items-center gap-2 <%= filter === 'discount' ? 'bg-orange-100 text-orange-900' : 'hover:bg-orange-100 text-orange-700' %>" href="/shop?filter=discount&sortby=<%= sortby || 'popular' %>&collection=<%= collection || 'all' %>"><i class="ri-price-tag-3-fill"></i>Discount</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <h2 id="shop-grid" class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 tracking-tight text-center md:text-left">Shop Our <span class="text-blue-500">Trendy Bags</span></h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                    <% products.forEach(function(product){ %>
@@ -82,4 +134,23 @@
         </main>
     </div>
     <script src="/javascripts/shop-slideshow.js"></script>
+    <script>
+        (function() {
+            var filterToggleBtn = document.getElementById('filterToggleBtn');
+            var closeFilterBtn = document.getElementById('closeFilterBtn');
+            var mobileFilterPanel = document.getElementById('mobileFilterPanel');
+            if (!filterToggleBtn || !closeFilterBtn || !mobileFilterPanel) return;
+            filterToggleBtn.addEventListener('click', function() {
+                mobileFilterPanel.classList.remove('hidden');
+            });
+            closeFilterBtn.addEventListener('click', function() {
+                mobileFilterPanel.classList.add('hidden');
+            });
+            mobileFilterPanel.addEventListener('click', function(event) {
+                if (event.target === mobileFilterPanel) {
+                    mobileFilterPanel.classList.add('hidden');
+                }
+            });
+        })();
+    </script>
     <%- include('./partials/footer') %>

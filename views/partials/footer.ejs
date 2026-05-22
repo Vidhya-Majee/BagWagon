@@ -48,6 +48,23 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        (function() {
+            var navToggle = document.getElementById('navToggle');
+            var mobileMenu = document.getElementById('mobileMenu');
+            if (!navToggle || !mobileMenu) return;
+            navToggle.addEventListener('click', function(event) {
+                event.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && !navToggle.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>

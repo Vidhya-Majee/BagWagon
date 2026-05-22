@@ -33,32 +33,59 @@
             </div>
 
             <div class="flex items-center gap-2">
+                <button type="button" id="navToggle" class="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white p-2 text-slate-700 hover:bg-slate-100 md:hidden">
+                    <i class="ri-menu-line text-xl"></i>
+                </button>
+
+                <div class="hidden items-center gap-2 md:flex">
+                    <% if (_isloggedin) { %>
+                        <a href="/shop" class="rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Shop</a>
+                        <a href="/cart" class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                            <i class="ri-shopping-cart-2-line"></i>
+                            <span class="hidden sm:inline">Cart</span>
+                        </a>
+                        <a href="/account" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+                            <i class="ri-user-3-line"></i>
+                            <span class="hidden sm:inline">Account</span>
+                        </a>
+                        <a href="/users/logout" class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50">
+                            <i class="ri-logout-box-r-line"></i>
+                            <span class="hidden sm:inline">Logout</span>
+                        </a>
+                    <% } else { %>
+                        <% if (_navVariant === "landing") { %>
+                            <!-- Landing page: keep navbar clean (auth is on page) -->
+                        <% } else { %>
+                            <a href="/?mode=login" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+                                <i class="ri-login-box-line"></i>
+                                Login
+                            </a>
+                            <a href="/" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                                <i class="ri-user-add-line"></i>
+                                Register
+                            </a>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden border-t border-slate-200 bg-white px-4 pb-4 md:hidden">
+            <div class="flex flex-col gap-3 py-4">
+                <span class="text-sm font-medium text-slate-600">
+                    "Bags That Speak Your Style. Pack It. Sling It. Own It."
+                </span>
                 <% if (_isloggedin) { %>
-                    <a href="/shop" class="rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Shop</a>
-                    <a href="/cart" class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
-                        <i class="ri-shopping-cart-2-line"></i>
-                        <span class="hidden sm:inline">Cart</span>
-                    </a>
-                    <a href="/account" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">
-                        <i class="ri-user-3-line"></i>
-                        <span class="hidden sm:inline">Account</span>
-                    </a>
-                    <a href="/users/logout" class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50">
-                        <i class="ri-logout-box-r-line"></i>
-                        <span class="hidden sm:inline">Logout</span>
-                    </a>
+                    <a href="/shop" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100">Shop</a>
+                    <a href="/cart" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100">Cart</a>
+                    <a href="/account" class="block rounded-xl px-4 py-3 text-sm font-semibold text-slate-900 bg-slate-100 hover:bg-slate-200">Account</a>
+                    <a href="/users/logout" class="block rounded-xl px-4 py-3 text-sm font-semibold text-red-600 hover:bg-red-50">Logout</a>
                 <% } else { %>
                     <% if (_navVariant === "landing") { %>
-                        <!-- Landing page: keep navbar clean (auth is on page) -->
+                        <!-- Landing page: keep navbar clean -->
                     <% } else { %>
-                        <a href="/?mode=login" class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800">
-                            <i class="ri-login-box-line"></i>
-                            Login
-                        </a>
-                        <a href="/" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
-                            <i class="ri-user-add-line"></i>
-                            Register
-                        </a>
+                        <a href="/?mode=login" class="block rounded-xl px-4 py-3 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800">Login</a>
+                        <a href="/" class="block rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">Register</a>
                     <% } %>
                 <% } %>
             </div>
